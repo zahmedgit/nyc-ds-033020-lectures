@@ -117,4 +117,60 @@ def hist_genre(data):
     plt.hist(genres, edgecolor='black')
 #     print(set(genres))
     plt.show()
+    
+#albumWithMostTopSongs 
+#- returns the name of the artist and album that has that most songs featured on the top 500 songs list Maybe
+def mostTopSongs(song_list,album_list):
+    count,album=0,''
+    for i in album_list:
+        x=0
+        for song in song_list:
+            for track in i['tracks']:
+                if song['name']==track:
+                    x+=1
+                    break
+
+        if x>count:
+            count=x
+            album=i['album']
+    return [album,count]
+
+#albumsWithTopSongs 
+#- returns a list with the name of only the albums that have tracks featured on the list of top 500 songs Maybe
+def albums_withTopSongs(album_list,song_list):
+    albums=[]
+    for i in album_list:
+        x=0
+        for song in song_list:
+            for track in i['tracks']:
+                if song['name']==track:
+                    x+=1
+                    break
+
+        if x>0:
+            albums.append(i['album'])
+    return albums
+
+#songsThatAreOnTopAlbums 
+#- returns a list with the name of only the songs featured on the list of top albums
+def song_onTopAlbums(album_list, track_list):
+    feature_songs=[]
+    for data_dict in album_list:
+        feature_songs.append(find_name(data_dict['album'],track_list)['tracks'])
+    return feature_songs
+
+#topOverallArtist 
+#- Artist featured with the most songs and albums on the two lists. This means that if Brittany Spears had 3 of her albums featured on the top albums listed and 10 of her songs featured on the top songs, she would have a total of 13. The artist with the highest aggregate score would be the top overall artist. Easy
+def topOverallArtist(song_list, album_list):
+    artists_songs = list_artists(song_list)
+    artists_albums = list_artists(album_list)
+    artists_songs.extend(artists_albums)
+    # for artists in artists_list:
+    count,top_artist=0,''
+    for artist in list(set(artists_songs)):
+        if artists_songs.count(artist)>count:
+            count,top_artist = artists_songs.count(artist),artist
+    # print(top_artist+":",count)
+    return top_artist
+
 
