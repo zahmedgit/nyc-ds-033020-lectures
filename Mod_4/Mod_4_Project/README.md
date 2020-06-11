@@ -215,7 +215,7 @@ In this case, your "deployment" comes in the form of the deliverables listed abo
 
 ## Grading Rubric
 
-Online students can find a PDF of the grading rubric for the project [here](TODO). _Note: On-campus students may have different requirements, please speak with your instructor._
+Online students can find a PDF of the grading rubric for the project in this project folder. _Note: On-campus students may have different requirements, please speak with your instructor._
 
 ## Citation
 
